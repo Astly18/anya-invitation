@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Anya's Magical Invitation</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================================
+         PHONE STAGE
+    =========================================================== -->
+
+    <div id="phoneStage">
+
+        <!-- ==========================================================
+             BACKGROUND
+        =========================================================== -->
+
+        <div id="backgroundContainer">
+
+            <img
+                id="backgroundImage"
+                src="Assets/images/background.png"
+                alt="Background">
+
+            <div id="backgroundOverlay"></div>
+
+            <div id="leafLayer"></div>
+
+        </div>
+
+        <!-- ==========================================================
+             WELCOME SCREEN
+        =========================================================== -->
+
+        <section
+            id="welcomeScreen"
+            class="screen active">
+
+            <div class="welcomeContent">
+
+                <p id="welcomeTitle">
+                    Hi Friend!<br><br>
+                    Someone has a<br>
+                    message for you...
+                </p>
+
+                <button id="beginButton">
+
+                    <img
+                        src="Assets/images/touch_to_begin.png"
+                        alt="Touch To Begin">
+
+                </button>
+
+            </div>
+
+        </section>
+
+                <!-- ==========================================================
+             ENVELOPE SCREEN
+        =========================================================== -->
+
+        <section
+            id="envelopeScreen"
+            class="screen">
+
+            <div class="envelopeContent">
+
+                <!-- Closed Envelope -->
+                <img
+                    id="envelopeImage"
+                    src="Assets/images/envelope_closed.png"
+                    alt="Envelope">
+
+                <!-- Card that will fly out of the envelope -->
+                <img
+                    id="flyingCard"
+                    src="Assets/images/card.png"
+                    alt="Invitation Card">
+
+                <h2 id="envelopeText">
+
+                    Touch the Envelope
+
+                </h2>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+             STORY SCREEN
+        =========================================================== -->
+
+        <section
+            id="storyScreen"
+            class="screen">
+
+            <!-- ======================================================
+                 CARD
+            ======================================================= -->
+
+            <div id="cardWrapper">
+
+                <img
+                    id="cardBackground"
+                    src="Assets/images/card.png"
+                    alt="Card">
+
+                <!-- Everything inside the card -->
+                <div id="cardContent">
+
+                    <!-- ==========================================
+                         STORY MODE
+                    =========================================== -->
+
+                    <div id="storyGifArea">
+
+                        <img
+                            id="storyGif"
+                            src=""
+                            alt="Story GIF">
+
+                    </div>
+
+                    <h2 id="storyTitle"></h2>
+
+                    <div id="storyTextContainer">
+
+                        <p id="storyText"></p>
+
+                    </div>
+
+                    <!-- ==========================================
+                         INVITATION MODE
+                    =========================================== -->
+
+                    <div id="invitationLayout">
+
+    <p id="invitationTitle"></p>
+
+    <img
+        id="invitationImage"
+        src="Assets/images/invitation.png"
+        alt="Invitation">
+
+    <img
+        id="cornerGif"
+        src=""
+        alt="Corner GIF">
+
+</div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================================
+                 BUTTON AREA
+            ======================================================= -->
+
+            <div id="buttonArea">
+
+                <button
+                    id="nextButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="Next Button">
+
+                    <span>Next</span>
+
+                </button>
+
+                <button
+                    id="yesButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="Yes Button">
+
+                    <span>Yes</span>
+
+                </button>
+
+                <button
+                    id="maybeButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="Maybe Button">
+
+                    <span>Maybe</span>
+
+                </button>
+
+                <button
+                    id="noButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="No Button">
+
+                    <span>No</span>
+
+                </button>
+
+                <button
+                    id="continueButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="Continue Button">
+
+                    <span>Continue</span>
+
+                </button>
+
+                <button
+                    id="closeButton"
+                    class="pinkButton">
+
+                    <img
+                        src="Assets/images/blank_button.png"
+                        alt="Close Button">
+
+                    <span>Close</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+                <!-- ==========================================================
+             AUDIO
+        =========================================================== -->
+
+        <audio
+            id="backgroundMusic"
+            src="Assets/audio/background.mp3"
+            loop>
+        </audio>
+
+        <audio
+            id="popSound"
+            src="Assets/audio/bubble.mp3">
+        </audio>
+
+        <audio
+            id="glitterSound"
+            src="Assets/audio/glitter.mp3"
+            preload="auto">
+        </audio>
+
+    </div>
+    <!-- End of #phoneStage -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
