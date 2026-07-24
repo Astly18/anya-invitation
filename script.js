@@ -37,6 +37,7 @@ const closeButton = document.getElementById("closeButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
 const popSound = document.getElementById("popSound");
 const glitterSound = document.getElementById("glitterSound");
+const anyaVoice = document.getElementById("anyaVoice");
 
 /*==========================================================
 GLOBAL
@@ -118,7 +119,19 @@ to my magical birthday celebration!`,
     button:"continue"
 },
 
+{
+    gif:"Assets/gifs/silly.gif",
+    title:"",
+    text:`For more details about my
+Birthday & Dedication,
 
+don't hesitate to contact
+my Mama and Dada.
+
+They would be delighted
+to hear from you!`,
+    button:"next"
+},
 
 {
     gif:"Assets/gifs/laughing.gif",
@@ -131,6 +144,7 @@ Laughter...
 And of course...
 LOTS OF pictures together!
 I'll be waiting for you!
+
 See you soon!`,
     button:"close"
 }
@@ -168,6 +182,38 @@ function playMusic(){
 
     backgroundMusic.volume = .35;
     backgroundMusic.play();
+
+}
+
+/* ==============================
+   BABY ANYA VOICE
+============================== */
+
+function playAnya(){
+
+    anyaVoice.pause();
+
+    anyaVoice.currentTime = 0;
+
+    anyaVoice.play().catch(()=>{});
+
+}
+
+function stopAnya(){
+
+    anyaVoice.pause();
+
+    anyaVoice.currentTime = 0;
+
+}
+
+function hideAllScreens(){
+
+    Object.values(screens).forEach(screen=>{
+
+        screen.classList.remove("active");
+
+    });
 
 }
 
@@ -230,23 +276,28 @@ beginButton.addEventListener("click", () => {
 
 envelopeImage.addEventListener("click", () => {
 
+    const envelopeText = document.getElementById("envelopeText");
+    envelopeText.style.display = "none";
+
     playGlitter();
 
-    /* Open the envelope */
-    envelopeImage.classList.add("envelopeOpening");
-
+    
+    /* Play the opening GIF */
     envelopeImage.src =
-        "Assets/images/envelope_open.png";
+        "Assets/images/envelope_opening.gif";
 
-    /* Wait for the envelope to open */
+    const whiteFlash = document.getElementById("whiteFlash");
+
     setTimeout(() => {
 
-        flyingCard.style.animation =
-            "cardFly .9s forwards";
+        envelopeImage.classList.add("envelopeZoom");
+        whiteFlash.classList.add("active");
 
-    },300);
+    },4000);
 
-    /* Wait for the card to fly out */
+
+
+    /* Wait for the opening GIF to finish */
     setTimeout(() => {
 
         backgroundOverlay.style.background =
@@ -264,11 +315,12 @@ envelopeImage.addEventListener("click", () => {
         envelopeImage.src =
             "Assets/images/envelope_closed.png";
 
-        envelopeImage.classList.remove("envelopeOpening");
+        envelopeText.style.display = "";
 
-        flyingCard.style.animation = "";
+        envelopeImage.classList.remove("envelopeZoom");
+        whiteFlash.classList.remove("active");
 
-    },1200);
+    },5290);
 
 });
 
@@ -364,6 +416,8 @@ function typeWriter(text) {
 
     storyText.classList.add("typingCursor");
 
+    playAnya();
+
     function type() {
 
         if (index < text.length) {
@@ -379,6 +433,8 @@ function typeWriter(text) {
         }
 
         else {
+
+            stopAnya();
 
             storyText.classList.remove("typingCursor");
 
@@ -573,7 +629,10 @@ maybeButton.addEventListener("click", () => {
 `That's okay!
 
 I know sometimes grown-ups get really busy.
-If you can come, it would make my birthday even more special.`;
+If you can come, it would make my birthday even more special.
+
+Even if you're still unsure, 
+I'd love for you to have this invitation...`;
 
     fitText();
 
@@ -592,14 +651,14 @@ noButton.addEventListener("click", () => {
 
     storyText.textContent =
 `Aww...
-I'll miss you.
+It's okay...
 
 But thank you for 
 taking the time
 to read my invitation.
 
-I hope we'll see each 
-other again soon.`;
+Whether you can come or not, 
+I still wanted to give you this invitation.`;
 
     fitText();
 
