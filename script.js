@@ -893,6 +893,8 @@ sponsorYesButton.addEventListener("click", () => {
 
     playPop();
 
+    saveRSVP("Yes", "Yes");
+
     currentPage++;   // Go to the "Thank you!" page
 
     loadPage();
