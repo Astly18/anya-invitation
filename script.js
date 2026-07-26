@@ -901,7 +901,7 @@ sponsorYesButton.addEventListener("click", () => {
 
     playPop();
 
-    saveRSVP("Yes", "Yes");
+    saveRSVP(attendanceChoice, "Yes");
 
     currentPage++;   // Go to the "Thank you!" page
 
