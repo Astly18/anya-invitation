@@ -858,6 +858,8 @@ noButton.addEventListener("click", () => {
 
     playPop();
 
+    saveRSVP("No");
+
     guestWillAttend = false;
 
     storyGif.src =
