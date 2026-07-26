@@ -55,6 +55,7 @@ let typingTimer = null;
 let typingFinished = false;
 let musicStarted = false;
 let guestWillAttend = true;
+let attendanceChoice = "";
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -806,7 +807,10 @@ RSVP
 yesButton.addEventListener("click", () => {
 
     playPop();
-    saveRSVP("Yes");
+
+    attendanceChoice = "Yes";
+
+    saveRSVP(attendanceChoice);
 
     storyGif.src =
         "Assets/gifs/excited.gif?t=" + Date.now();
@@ -832,7 +836,9 @@ maybeButton.addEventListener("click", () => {
 
     playPop();
 
-    saveRSVP("Maybe");
+    attendanceChoice = "Maybe";
+
+    saveRSVP(attendanceChoice);
 
     storyGif.src =
         "Assets/gifs/cheeky.gif?t=" + Date.now();
@@ -858,7 +864,9 @@ noButton.addEventListener("click", () => {
 
     playPop();
 
-    saveRSVP("No");
+    attendanceChoice = "No";
+
+    saveRSVP(attendanceChoice);
 
     guestWillAttend = false;
 
