@@ -832,6 +832,8 @@ maybeButton.addEventListener("click", () => {
 
     playPop();
 
+    saveRSVP("Maybe");
+
     storyGif.src =
         "Assets/gifs/cheeky.gif?t=" + Date.now();
 
