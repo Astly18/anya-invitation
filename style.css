@@ -2,6 +2,22 @@
    FONTS
 ========================================================== */
 
+/* ==========================================================
+   FONTS
+========================================================== */
+
+@font-face{
+
+    font-family:"BerkshireSwash";
+
+    src:url("Assets/fonts/BerkshireSwash-Regular.ttf") format("truetype");
+
+    font-weight:normal;
+
+    font-style:normal;
+
+}
+
 @font-face{
 
     font-family:"SpaceKids";
@@ -32,7 +48,7 @@ body{
 
     overflow:hidden;
 
-    font-family:"SpaceKids",cursive;
+    font-family:"BerkshireSwash", cursive;
 
     background:#000;
 
@@ -192,15 +208,17 @@ body{
 
     color:#7A5134;
 
-    font-size:2rem;
+    font-size:1.75rem;
 
     font-weight:normal;
 
-    line-height:1.35;
+    line-height:1.55;
 
     text-align:center;
 
-    text-shadow:0 2px 8px rgba(255,255,255,.30);
+    letter-spacing:.4px;
+
+    text-shadow:0 2px 8px rgba(255,255,255,.28);
 
 }
 
@@ -393,17 +411,19 @@ body{
 
     position:absolute;
 
-    left:6%;
+    left:18px;
 
-    bottom:8%;
-
-    width:auto;
+    bottom:18px;
 
     display:flex;
+
+    align-items:flex-end;
 
     justify-content:flex-start;
 
     z-index:5;
+
+    pointer-events:none;
 
 }
 
@@ -458,9 +478,19 @@ body{
 
     overflow:hidden;
 
-    margin-top:18px;
+    margin-top:0px;
 
     padding:30px 5% 0;
+
+}
+
+.centerStoryText{
+
+    justify-content:center !important;
+
+    align-items:center !important;
+
+    padding:0 5% 80px;
 
 }
 
@@ -468,20 +498,24 @@ body{
 
     width:100%;
 
+    font-family:"SpaceKids", cursive;
+
     text-align:center;
 
-    color:#C7865A;
+    color:#7A5134;
 
     text-shadow:
-        0 1px 2px rgba(255,255,255,.65);
+        0 1px 2px rgba(255,255,255,.45);
 
-    font-size:1.20rem;
+    font-size:1.35rem;
 
-    line-height:1.5;
+    line-height:1.45;
+
+    letter-spacing:0;
 
     white-space:pre-wrap;
 
-    padding-bottom:90px;
+    padding-bottom:120px;
 
 }
 
@@ -519,7 +553,7 @@ body{
 
     text-shadow:none;
 
-    font-family:Arial,sans-serif;
+    font-family:"BerkshireSwash", cursive;
 
     font-size:13px;
 
@@ -622,7 +656,9 @@ body{
 
     color:#FFFFFF;
 
-    font-size:1.2rem;
+    font-size:1.05rem;
+
+    letter-spacing:.4px;
 
     pointer-events:none;
 
@@ -690,6 +726,8 @@ body{
 
 #nextButton,
 #yesButton,
+#sponsorYesButton,
+#sponsorNoButton,
 #maybeButton,
 #noButton,
 #continueButton,
@@ -710,45 +748,31 @@ body{
 ========================================================== */
 
 .font24{
-
-    font-size:1.50rem;
-
+    font-size:1.48rem;
 }
 
 .font22{
-
-    font-size:1.38rem;
-
+    font-size:1.36rem;
 }
 
 .font20{
-
-    font-size:1.25rem;
-
+    font-size:1.24rem;
 }
 
 .font18{
-
     font-size:1.12rem;
-
 }
 
 .font16{
-
-    font-size:1rem;
-
+    font-size:1.00rem;
 }
 
 .font14{
-
-    font-size:.90rem;
-
+    font-size:.92rem;
 }
 
 .font12{
-
-    font-size:.82rem;
-
+    font-size:.84rem;
 }
 
 /* ==========================================================
@@ -1271,8 +1295,8 @@ CARD FADE TRANSITION
     transform:scale(.98);
 
     transition:
-        opacity 3s ease,
-        transform 3s ease;
+        opacity 2s ease,
+        transform 2s ease;
 
 }
 
@@ -1283,8 +1307,8 @@ CARD FADE TRANSITION
     transform:scale(1);
 
     transition:
-        opacity 3s ease,
-        transform 3s ease;
+        opacity 2s ease,
+        transform 2s ease;
 
 }
 
@@ -1372,17 +1396,17 @@ FLYING CARD ANIMATION
 
 #invitationTitle.plainInvitationTitle{
 
-    font-family: Arial, sans-serif;
+    font-family:"BerkshireSwash", cursive;
 
-    color: #9b0c6e;
+    color:#9b0c6e;
 
-    font-size: 15px;
+    font-size:1.15rem;
 
-    line-height: 1.3;
+    line-height:1.55;
 
-    font-weight: bold;
+    font-weight:normal;
 
-    letter-spacing: 0;
+    letter-spacing:.3px;
 
 
     /* ================================

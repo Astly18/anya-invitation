@@ -22,6 +22,7 @@ const cardContent = document.getElementById("cardContent");
 const storyGif = document.getElementById("storyGif");
 const storyTitle = document.getElementById("storyTitle");
 const storyText = document.getElementById("storyText");
+const storyTextContainer = document.getElementById("storyTextContainer");
 
 const invitationLayout = document.getElementById("invitationLayout");
 const invitationImage = document.getElementById("invitationImage");
@@ -29,6 +30,9 @@ const cornerGif = document.getElementById("cornerGif");
 
 const nextButton = document.getElementById("nextButton");
 const yesButton = document.getElementById("yesButton");
+const sponsorYesButton = document.getElementById("sponsorYesButton");
+
+const sponsorNoButton = document.getElementById("sponsorNoButton");
 const maybeButton = document.getElementById("maybeButton");
 const noButton = document.getElementById("noButton");
 const continueButton = document.getElementById("continueButton");
@@ -43,13 +47,34 @@ const anyaVoice = document.getElementById("anyaVoice");
 GLOBAL
 ==========================================================*/
 
+const RSVP_API =
+"https://script.google.com/macros/s/AKfycbxdxFIhBVj555bs18fCuCnCTy2EApy4VsThXlZDXcDQF02jVjLKDnru755woPms5j6t9w/exec";
+
 let currentPage = 0;
 let typingTimer = null;
 let typingFinished = false;
 let musicStarted = false;
+let guestWillAttend = true;
 
 const urlParams = new URLSearchParams(window.location.search);
-const guestName = urlParams.get("name") || "Friend";
+
+const guestName =
+    urlParams.get("name") || "Friend";
+
+const guestType =
+    (urlParams.get("type") || "guest").toLowerCase();
+
+const isGuest =
+    guestType === "guest";
+
+const isNinong =
+    guestType === "ninong";
+
+const isNinang =
+    guestType === "ninang";
+
+const sponsorTitle =
+    isNinang ? "Ninang" : "Ninong";
 
 /*==========================================================
 PAGES
@@ -90,7 +115,7 @@ it with us.`,
     text:`My real birthday is
 September 10...
 
-But my Birthday and Dedication 
+But my Dedication and Birthday 
 Celebration will be held on
 
 Saturday,
@@ -102,9 +127,10 @@ at 10:00 AM`,
 {
     gif:"Assets/gifs/please.gif",
     title:"",
-    text:`Will you come to my 
-    birthday party?`,
-    button:"choices"
+    text:`Will you come to my
+birthday party?`,
+    button:"choices",
+    centerText:true
 },
 
 {
@@ -114,7 +140,7 @@ at 10:00 AM`,
 
     text:`Now, it is my greatest joy
 to officially invite you
-to my magical birthday celebration!`,
+to my Birthday celebration!`,
 
     button:"continue"
 },
@@ -137,25 +163,156 @@ to hear from you!`,
     gif:"Assets/gifs/laughing.gif",
     title:"",
     text:`I can't wait to celebrate with everyone I love.
-
 There will be smiles...
 Lots of food...
-Laughter...
 And of course...
-LOTS OF pictures together!
+lots of pictures together!
 I'll be waiting for you!
+See you soon!
 
-See you soon!`,
+💕
+Love,
+Anya”`,
     button:"close"
 }
 
-/* response pages added in Chunk 2 */
+,
+{
+    gif:"Assets/gifs/shy.gif",
+    title:"",
+    text:`Thank you for reading
+my little invitation.
+Your love, prayers,
+and kind wishes
+are already a wonderful gift to me.
+I hope to see you again someday.
+Until then,
+take good care!
+
+💕
+Love,
+Anya”
+`,
+    button:"close",
+    notAttendingEnding:true
+}
 
 ];
+
+console.log("Pages:");
+pages.forEach((page, index) => {
+    console.log(index, page.button, page.sponsorResult || "");
+});
+
+/* ===========================================
+   Ninong / Ninang Pages
+=========================================== */
+
+if (isNinong || isNinang) {
+
+    pages.splice(4, 0,
+
+        {
+            gif: "Assets/gifs/shy.gif",
+            title: "",
+            text: `Can I tell you a little secret?
+
+Mama and Dada always tell me how blessed they are because of wonderful people like you.
+
+They say you've been part of so many happy memories in their lives.
+
+Even before I was born...`,
+            button: "next"
+        },
+
+        {
+            gif: "Assets/gifs/nagmamakaawa.gif",
+            title: "",
+            text: `That's why...
+I'm a little shy to ask...
+
+But...
+
+Would you do me the honor of becoming my
+"${sponsorTitle}"
+
+and help guide me as I grow up?`,
+            button: "sponsorChoices",
+            centerText: true
+        },
+
+        {
+            gif: "Assets/gifs/overjoy.gif",
+            title: "",
+            text: `Really!!! Wow! Thank you so much!
+
+Knowing you'll be one of my ${sponsorTitle} makes my heart so happy.
+I promise I'll keep making you proud as I grow up.
+
+Let's make lots of wonderful memories together!`,
+            button: "continue",
+            sponsorResult: "yes"
+        },
+
+        {
+            gif: "Assets/gifs/Thankful.gif",
+            title: "",
+            text: `That's perfectly okay.
+
+Thank you for being honest.
+
+No matter what, you'll always be someone special to me and my family.
+
+Thank you for taking the time to read my invitation.`,
+            button: "continue",
+            sponsorResult: "no"
+        }
+
+    );
+
+}
+
+
+console.log("Pages:");
+pages.forEach((page, index) => {
+    console.log(index, page.button, page.sponsorResult || "");
+});
 
 /*==========================================================
 HELPERS
 ==========================================================*/
+
+async function saveRSVP(attendance, sponsorship = "-") {
+
+    const invitationId = urlParams.get("id") || "";
+    const name = urlParams.get("name") || "";
+
+    try {
+
+        await fetch(RSVP_API, {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                invitationId,
+                name,
+                attendance,
+                sponsorship
+
+            })
+
+        });
+
+        console.log("RSVP Saved");
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 
 function playPop(){
 
@@ -239,10 +396,13 @@ function hideButtons(){
 
     nextButton.classList.remove("showButton");
     yesButton.classList.remove("showButton");
+    sponsorYesButton.classList.remove("showButton");
+    sponsorNoButton.classList.remove("showButton");
     maybeButton.classList.remove("showButton");
     noButton.classList.remove("showButton");
     continueButton.classList.remove("showButton");
     closeButton.classList.remove("showButton");
+    
 
 }
 
@@ -349,9 +509,24 @@ function loadPage() {
 
         storyGif.src = page.gif + "?t=" + Date.now();
 
+        // Make Anya bigger only on sponsor pages
+        if (page.button === "sponsorChoices" || page.sponsorResult) {
+            storyGif.style.width = "180px";
+        } else {
+            storyGif.style.width = "120px";
+        }
+
         storyTitle.textContent = page.title;
 
         storyText.textContent = "";
+
+        storyTextContainer.classList.remove("centerStoryText");
+
+        if(page.centerText){
+
+            storyTextContainer.classList.add("centerStoryText");
+
+        }
 
         setTimeout(()=>{
 
@@ -387,8 +562,11 @@ function loadPage() {
 
 function fadeToNextPage(callback){
 
-    cardWrapper.classList.remove("cardFadeIn");
+    const whiteFlash = document.getElementById("whiteFlash");
 
+    whiteFlash.classList.add("active");
+
+    cardWrapper.classList.remove("cardFadeIn");
     cardWrapper.classList.add("cardFadeOut");
 
     setTimeout(()=>{
@@ -396,10 +574,11 @@ function fadeToNextPage(callback){
         callback();
 
         cardWrapper.classList.remove("cardFadeOut");
-
         cardWrapper.classList.add("cardFadeIn");
 
-    },3000);
+        whiteFlash.classList.remove("active");
+
+    },2000);
 
 }
 
@@ -520,6 +699,13 @@ function showButtons(type){
 
         break;
 
+        case "sponsorChoices":
+
+            sponsorYesButton.classList.add("showButton");
+            sponsorNoButton.classList.add("showButton");
+
+        break;
+
         case "continue":
 
             continueButton.classList.add("showButton");
@@ -564,11 +750,22 @@ nextButton.addEventListener("click", () => {
 
     fadeToNextPage(()=>{
 
+    currentPage++;
+
+    // If the guest answered NO,
+    // show the special farewell page instead.
+    if (
+        !guestWillAttend &&
+        pages[currentPage] &&
+        pages[currentPage].button === "close" &&
+        !pages[currentPage].notAttendingEnding
+    ) {
         currentPage++;
+    }
 
-        loadPage();
+    loadPage();
 
-    });
+});
 
 });
 
@@ -582,11 +779,23 @@ continueButton.addEventListener("click", () => {
 
     fadeToNextPage(()=>{
 
+    const page = pages[currentPage];
+
+    if (page.sponsorResult) {
+
+        currentPage += 2;
+
+    } else {
+
         currentPage++;
 
-        loadPage();
+    
 
-    });
+    }
+
+    loadPage();
+
+});
 
 });
 
@@ -597,6 +806,7 @@ RSVP
 yesButton.addEventListener("click", () => {
 
     playPop();
+    saveRSVP("Yes");
 
     storyGif.src =
         "Assets/gifs/excited.gif?t=" + Date.now();
@@ -646,6 +856,8 @@ noButton.addEventListener("click", () => {
 
     playPop();
 
+    guestWillAttend = false;
+
     storyGif.src =
         "Assets/gifs/yehey.gif?t=" + Date.now();
 
@@ -668,6 +880,33 @@ I still wanted to give you this invitation.`;
 
 });
 
+
+/*==========================================================
+SPONSOR CHOICE
+==========================================================*/
+
+sponsorYesButton.addEventListener("click", () => {
+
+    playPop();
+
+    currentPage++;   // Go to the "Thank you!" page
+
+    loadPage();
+
+});
+
+sponsorNoButton.addEventListener("click", () => {
+
+    playPop();
+
+    guestWillAttend = false;
+
+    currentPage += 2;   // Skip to the "That's perfectly okay." page
+
+    loadPage();
+
+});
+
 /*==========================================================
 CLOSE
 ==========================================================*/
@@ -676,7 +915,21 @@ closeButton.addEventListener("click", () => {
 
     playPop();
 
-    window.close();
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+
+    stopAnya();
+
+    const phone = document.getElementById("phoneStage");
+
+    phone.style.transition = "opacity 1.5s ease";
+    phone.style.opacity = "0";
+
+    setTimeout(() => {
+
+        window.close();
+
+    }, 1500);
 
 });
 
