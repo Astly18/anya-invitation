@@ -128,7 +128,11 @@ at 10:00 AM`,
 {
     gif:"Assets/gifs/please.gif",
     title:"",
-    text:`Will you come to my
+    text:`
+    
+    
+    
+    Will you come to my
 birthday party?`,
     button:"choices",
     centerText:true
@@ -246,7 +250,7 @@ and help guide me as I grow up?`,
             gif: "Assets/gifs/overjoy.gif",
             title: "",
             text: `Really!?? Wow! 
-            Thank you so much!
+Thank you so much!
 
 Knowing you'll be one of my ${sponsorTitle} makes my heart so happy.
 I promise I'll keep making you proud as I grow up.
@@ -840,11 +844,14 @@ maybeButton.addEventListener("click", () => {
     storyText.textContent =
 `That's okay!
 
-I know sometimes grown-ups get really busy.
-If you can come, it would make my birthday even more special.
+I know sometimes
+grown-ups get busy.
 
-Even if you're still unsure, 
-I'd love for you to have this invitation...`;
+I'd still love to give you
+my formal invitation,
+
+just in case
+you decide to come!`;
 
     fitText();
 
