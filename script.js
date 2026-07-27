@@ -256,12 +256,10 @@ Let's make lots of wonderful memories together!`,
         },
 
         {
-            gif: "Assets/gifs/Thankful.gif",
+            gif: "Assets/gifs/thankful.gif",
             title: "",
             text: `That's perfectly okay.
-
 Thank you for being honest.
-
 No matter what, you'll always be someone special to me and my family.
 
 Thank you for taking the time to read my invitation.`,
