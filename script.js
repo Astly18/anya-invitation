@@ -511,22 +511,17 @@ function loadPage() {
         storyGif.src = page.gif + "?t=" + Date.now();
 
         // Make Anya bigger only on sponsor pages
-        if (page.button === "sponsorChoices" || page.sponsorResult) {
+        if (page.button === "sponsorChoices") {
             storyGif.style.width = "180px";
-        } else {
-            storyGif.style.width = "120px";
         }
-
-        storyTitle.textContent = page.title;
-
-        storyText.textContent = "";
-
-        storyTextContainer.classList.remove("centerStoryText");
-
-        if(page.centerText){
-
-            storyTextContainer.classList.add("centerStoryText");
-
+        else if (page.sponsorResult === "yes") {
+    storyGif.style.width = "180px";
+        }
+        else if (page.sponsorResult === "no") {
+            storyGif.style.width = "135px";   // Adjust this number to your liking
+        }
+        else {
+            storyGif.style.width = "120px";
         }
 
         setTimeout(()=>{
