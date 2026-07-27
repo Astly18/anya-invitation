@@ -913,6 +913,8 @@ sponsorNoButton.addEventListener("click", () => {
 
     playPop();
 
+    saveRSVP(attendanceChoice, "No");
+
     guestWillAttend = false;
 
     currentPage += 2;   // Skip to the "That's perfectly okay." page
