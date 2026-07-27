@@ -173,7 +173,7 @@ See you soon!
 
 💕
 Love,
-Anya”`,
+Anya`,
     button:"close"
 }
 
@@ -192,7 +192,7 @@ take good care!
 
 💕
 Love,
-Anya”
+Anya
 `,
     button:"close",
     notAttendingEnding:true
@@ -245,7 +245,8 @@ and help guide me as I grow up?`,
         {
             gif: "Assets/gifs/overjoy.gif",
             title: "",
-            text: `Really!!! Wow! Thank you so much!
+            text: `Really!?? Wow! 
+            Thank you so much!
 
 Knowing you'll be one of my ${sponsorTitle} makes my heart so happy.
 I promise I'll keep making you proud as I grow up.
