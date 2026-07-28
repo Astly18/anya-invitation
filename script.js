@@ -780,7 +780,11 @@ continueButton.addEventListener("click", () => {
 
     const page = pages[currentPage];
 
-        currentPage++;
+    if (page.sponsorResult === "yes") {
+        currentPage += 2;   // Skip the Sponsor No page
+    } else {
+        currentPage++;      // Sponsor No goes directly to Invitation
+    }
 
         loadPage();
 
