@@ -267,7 +267,7 @@ Let's make lots of wonderful memories together!`,
 Thank you for being honest.
 No matter what, you'll always be someone special to me and my family.
 
-Thank you for taking the time to read my invitation.`,
+That's why I still wanted to send this invitation to you.`,
             button: "continue",
             sponsorResult: "no"
         }
@@ -780,21 +780,11 @@ continueButton.addEventListener("click", () => {
 
     const page = pages[currentPage];
 
-    if (page.sponsorResult) {
-
-        currentPage += 2;
-
-    } else {
-
         currentPage++;
 
-    
+        loadPage();
 
-    }
-
-    loadPage();
-
-});
+    });
 
 });
 
