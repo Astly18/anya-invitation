@@ -42,6 +42,7 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 const popSound = document.getElementById("popSound");
 const glitterSound = document.getElementById("glitterSound");
 const anyaVoice = document.getElementById("anyaVoice");
+const anyaYeheyVoice = document.getElementById("anyaYeheyVoice");
 
 /*==========================================================
 GLOBAL
@@ -128,11 +129,7 @@ at 10:00 AM`,
 {
     gif:"Assets/gifs/please.gif",
     title:"",
-    text:`
-    
-    
-    
-    Will you come to my
+    text:`Will you come to my
 birthday party?`,
     button:"choices",
     centerText:true
@@ -357,6 +354,16 @@ function playAnya(){
     anyaVoice.currentTime = 0;
 
     anyaVoice.play().catch(()=>{});
+
+}
+
+function playAnyaYehey(){
+
+    anyaYeheyVoice.pause();
+
+    anyaYeheyVoice.currentTime = 0;
+
+    anyaYeheyVoice.play().catch(()=>{});
 
 }
 
@@ -811,13 +818,15 @@ yesButton.addEventListener("click", () => {
         "Assets/gifs/excited.gif?t=" + Date.now();
 
     storyText.textContent =
-`Yaaay!!
-You just made my 
-tiny heart so happy!
-I can't wait to laugh, play,
-take lots of pictures,
-and make beautiful 
-memories with you.`;
+    `Yaaay!!
+    You just made my 
+    tiny heart so happy!
+    I can't wait to laugh, play,
+    take lots of pictures,
+    and make beautiful 
+    memories with you.`;
+
+    playAnyaYehey();
 
     fitText();
 
