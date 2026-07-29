@@ -527,6 +527,9 @@ function loadPage() {
             storyGif.style.width = "120px";
         }
 
+        storyText.textContent = "";
+        storyTitle.textContent = "";
+
         setTimeout(()=>{
 
             typeWriter(page.text);
