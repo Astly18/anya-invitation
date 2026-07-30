@@ -539,9 +539,10 @@ function loadPage() {
         storyTitle.textContent = "";
 
         if (page.textOffset) {
-            storyText.style.transform = `translateY(${page.textOffset * 1.5}em)`;
+        storyTextContainer.style.paddingTop =
+            `${30 + page.textOffset * 24}px`;
         } else {
-            storyText.style.transform = "";
+            storyTextContainer.style.paddingTop = "20px";
         }
 
         setTimeout(()=>{
@@ -855,16 +856,18 @@ maybeButton.addEventListener("click", () => {
         "Assets/gifs/cheeky.gif?t=" + Date.now();
 
     storyText.textContent =
-`That's okay!
+    `That's okay!
 
-I know sometimes
-grown-ups get busy.
+    I know sometimes
+    grown-ups get busy.
 
-I'd still love to give you
-my formal invitation,
+    I'd still love to give you
+    my formal invitation,
 
-just in case
-you decide to come!`;
+    just in case
+    you decide to come!`;
+
+    storyTextContainer.style.paddingTop = "10px";
 
     fitText();
 
@@ -888,15 +891,17 @@ noButton.addEventListener("click", () => {
         "Assets/gifs/yehey.gif?t=" + Date.now();
 
     storyText.textContent =
-`Aww...
-It's okay...
+    `Aww...
+    It's okay...
 
-But thank you for 
-taking the time
-to read my invitation.
+    But thank you for 
+    taking the time
+    to read my invitation.
 
-Whether you can come or not, 
-I still wanted to give you this invitation.`;
+    Whether you can come or not, 
+    I still wanted to give you this invitation.`;
+
+    storyTextContainer.style.paddingTop = "10px";
 
     fitText();
 
