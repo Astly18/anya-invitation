@@ -132,7 +132,8 @@ at 10:00 AM`,
     text:`Will you come to my
 birthday party?`,
     button:"choices",
-    centerText:true
+    centerText:true,
+    textOffset: 3,
 },
 
 {
@@ -536,6 +537,12 @@ function loadPage() {
 
         storyText.textContent = "";
         storyTitle.textContent = "";
+
+        if (page.textOffset) {
+            storyText.style.transform = `translateY(${page.textOffset * 1.5}em)`;
+        } else {
+            storyText.style.transform = "";
+        }
 
         setTimeout(()=>{
 
