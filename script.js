@@ -114,7 +114,7 @@ it with us.`,
 {
     gif:"Assets/gifs/cheeky.gif",
     title:"",
-    text:`My real birthday is
+    text:`My real birthday is on
 September 10...
 
 But my Dedication and Birthday 
