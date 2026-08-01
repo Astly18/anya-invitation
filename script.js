@@ -114,15 +114,14 @@ it with us.`,
 {
     gif:"Assets/gifs/cheeky.gif",
     title:"",
-    text:`My real birthday is on
-September 10...
-
-But my Dedication and Birthday 
+    text:`My real birthday is on September 10...
+But my Dedication and Birthday
 Celebration will be held on
 
-Saturday,
-September 12, 2026
-at 10:00 AM`,
+Saturday, 
+September 12, 2026,
+at 10:00 AM
+at Jollibee Madrigal, Alabang.`,
     button:"next"
 },
 
