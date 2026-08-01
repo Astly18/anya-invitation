@@ -221,9 +221,7 @@ if (isNinong || isNinang) {
             text: `Can I tell you a little secret?
 
 Mama and Dada always tell me how blessed they are because of wonderful people like you.
-
 They say you've been part of so many happy memories in their lives.
-
 Even before I was born...`,
             button: "next"
         },
